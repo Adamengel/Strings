@@ -16,15 +16,15 @@ public:
 	myString(myString& thisString);
 	~myString();
 
-	int GetLength();
+	int GetLength() const;
 	void Assign(myString& otherString);
 	void Assign(char* otherString);
-	char CharAt(int index);
+	char CharAt(int index) const;
 	myString Append(myString& otherString);
 	myString Append(char* otherString);
-	int Compare(myString& otherString);
-	int Compare(char* otherString);
-	bool IsEmpty();
+	int Compare(myString& otherString) const;
+	int Compare(char* otherString) const;
+	bool IsEmpty() const;
 	void Clear();
 
 private:

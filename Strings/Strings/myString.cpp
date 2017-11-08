@@ -10,13 +10,13 @@ constructor and method implementations
 
 using namespace std;
 
-myString::myString()
+myString::myString() 
 {
 	string = NULL;
 	length = 0;
 }
 
-myString::myString(char* thisString)
+myString::myString(char* thisString) 
 {
 	int index = 0;
 	while (*(thisString + index) != '\0')
@@ -31,7 +31,7 @@ myString::myString(char* thisString)
 	}
 	string[ length ] = '\0';
 }
-myString::myString(myString& thisString)
+myString::myString(myString& thisString) 
 {
 	length = thisString.length;
 	string = new char[ length + 1 ];
@@ -50,17 +50,17 @@ myString::~myString()
 }
 
 //return length of string
-int myString::GetLength()
+int myString::GetLength() const
 {
 	return length;
 }
 
 // assign value of parameter string to current string
-void myString::Assign(myString& otherString)
+void myString::Assign(myString& otherString) 
 {
 	(myString*)this = new myString(otherString);
 }
-void myString::Assign(char* otherString)
+void myString::Assign(char* otherString) 
 {
 	if (otherString != NULL)
 	{
@@ -80,7 +80,7 @@ void myString::Assign(char* otherString)
 }
 
 //return the character at the given index of the string
-char myString::CharAt(int index)
+char myString::CharAt(int index) const
 {
 	char retVal = '\0';
 	if (index >= 0 && index < length)
@@ -91,7 +91,7 @@ char myString::CharAt(int index)
 }
 
 //concatenate two strings together
-myString myString::Append(myString& otherString)
+myString myString::Append(myString& otherString) 
 {
 	int newLength = length + otherString.length;
 	char* newString = new char[ newLength + 1];
@@ -112,7 +112,7 @@ myString myString::Append(myString& otherString)
 	return string;
 }
 
-myString myString::Append(char* otherString)
+myString myString::Append(char* otherString) 
 {
 	if (otherString != NULL)
 	{
@@ -138,7 +138,7 @@ myString myString::Append(char* otherString)
 
 //compare two strings. 
 //return -1 if parameter string comes after class string, 0 is they are the same, and 1 if parameter string comes before class string
-int myString::Compare(myString& otherString)
+int myString::Compare(myString& otherString) const
 {
 	int compare = 0;
 	unsigned index = 0;
@@ -166,7 +166,7 @@ int myString::Compare(myString& otherString)
 	return compare;
 }
 
-int myString::Compare(char* otherString)
+int myString::Compare(char* otherString) const
 {
 	int retVal = 0;
 	if (otherString != NULL) {
@@ -176,13 +176,13 @@ int myString::Compare(char* otherString)
 }
 
 //return true if empty, false if not
-bool myString::IsEmpty()
+bool myString::IsEmpty() const
 {
 	return length == 0 ? true : false;
 }
 
 //clear string value and length
-void myString::Clear()
+void myString::Clear() 
 {
 	string = NULL;
 	length = 0;
