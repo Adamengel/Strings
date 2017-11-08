@@ -60,6 +60,24 @@ void myString::Assign(myString& otherString)
 {
 	(myString*)this = new myString(otherString);
 }
+void myString::Assign(char* otherString)
+{
+	if (otherString != NULL)
+	{
+		length = strlen(otherString) - 1;
+		string = new char[ length + 1 ];
+		for (int index = 0; index < length; index++)
+		{
+			string[ index ] = otherString[ index ];
+		}
+		string[ length ] = '\0';
+	}
+	else
+	{
+		string = NULL;
+		length = 0;
+	}
+}
 
 //return the character at the given index of the string
 char myString::CharAt(int index)
@@ -91,7 +109,31 @@ myString myString::Append(myString& otherString)
 	string = newString;
 	length = newLength;
 
-	return newString;
+	return string;
+}
+
+myString myString::Append(char* otherString)
+{
+	if (otherString != NULL)
+	{
+		unsigned lenOtherString = strlen(otherString);
+		int newLength = length + lenOtherString;
+		char* newString = new char[ newLength + 1 ];
+		for (int index = 0; index < length; index++)
+		{
+			newString[ index ] = string[ index ];
+		}
+		for (int index = 0; index < lenOtherString; index++)
+		{
+			newString[ length + index ] = otherString[ index ];
+		}
+
+		newString[ newLength ] = '\0';
+
+		string = newString;
+		length = newLength;
+	}
+	return string;
 }
 
 //compare two strings. 
@@ -122,6 +164,15 @@ int myString::Compare(myString& otherString)
 		}
 	}
 	return compare;
+}
+
+int myString::Compare(char* otherString)
+{
+	int retVal = 0;
+	if (otherString != NULL) {
+		retVal = strcmp(string, otherString);
+	}
+	return retVal;
 }
 
 //return true if empty, false if not
